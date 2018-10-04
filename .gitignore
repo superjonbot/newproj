@@ -30,7 +30,7 @@ Temporary Items
 
 #node_docker/node/*   BELOW is built by buildENV
 /node_modules/*
-
+challenge/node_modules/*
 ARCHIVE/*
 !ARCHIVE/.gitignore
 !ARCHIVE/.gitkeep
