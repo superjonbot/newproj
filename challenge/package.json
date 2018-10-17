@@ -13,7 +13,7 @@
     "node": "^6.8.0"
   },
   "jest": {
-    "testRegex": "test/test_unit.js"
+    "testRegex": "tests/test_unit.js"
   },
   "scripts": {
     "test": "jest"

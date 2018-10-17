@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 var exports = module.exports = {}
 
 const fetch = require('node-fetch');
@@ -7,25 +7,84 @@ const co = require('co') ;
 let settings={
     _endPoint: 'http://sandbox-cloudapi.imrworldwide.com/nmapi/v2/{{appid}}/{{sessionID}}/a?b=',/*, //https://cloudapi.imrworldwide.com/nmapi/v2/
         _appId: ins_brand('27BDDCBA-C8DF-4BA2-90DB-9C7FAE770A48'),*/
-        _sessionID: Date.now() + String(Math.random() * 1000000 >> 0)
+        _sessionID: Date.now() + String(Math.random() * 1000000 >> 0),
+        _brands:['aetv','history','lifetime','fyi']
 }
 
 
+exports.hello = function() {
+    return 'yo world'
+}
+
+exports.feedURI = function(brand){return `https://feeds.video.aetnd.com/api/${brand}/videos?filter%5BvideoType%5D=Episode&filter%5BisBehindWall%5D=false&perpage=500`}
+
+
+exports.getResults = function(brand) {
+    co(
+        function *(){
+            const uri= exports.feedURI(brand);
+            const response = yield fetch(uri);
+            const post = yield response.json();
+            const results = yield post.results;
+
+/*            for(var a=0;a<results.length;a++){
+                console.log(`${brand} id: ${results[a].id}    ${results[a].seriesName}:${results[a].title} (S${results[a].tvSeasonNumber}:E${results[a].tvSeasonEpisodeNumber})`)
+            }*/
+            //console.log(brand+' '+results.length)
+            return results
+
+        }
+    )
+}
+
+exports.run = async() {
+
+
+
+            let returnObj={};
+
+    console.log('hey'+JSON.stringify(returnObj));
+
+            for(let i=0;i<settings._brands.length;i++){
+                await returnObj[settings._brands[i]]=exports.getResults(settings._brands[i]);
+                //returnObj[settings._brands[i]]=exports.getResults(settings._brands[i])
+            }
+
+            //return returnObj
+
+            console.log('hey'+JSON.stringify(returnObj))
+
+
+}
+
+exports.run()
+/*
 exports={
-    uri:'https://feeds.video.aetnd.com/api/aetv/videos?filter%5BvideoType%5D=Episode&filter%5BisBehindWall%5D=false&perpage=500',
+    hello : function () {
+        return 'yo world'
+    }
+
+}
+*/
+
+
+
+/*
+exports={
+    uri:function(brand){return `https://feeds.video.aetnd.com/api/${brand}/videos?filter%5BvideoType%5D=Episode&filter%5BisBehindWall%5D=false&perpage=500`},
     hello : function() {
         return 'yo world'
     },
-    hellofile : function() {
+    hellofile : function(brand) {
         co(
             function *(){
-                const uri= exports.uri;
+                const uri= exports.uri(brand);
                 const response = yield fetch(uri);
                 const post = yield response.json();
                 const results = yield post.results;
 
                 for(var a=0;a<results.length;a++){
-                    console.log(`id: ${results[a].id}    ${results[a].seriesName}:${results[a].title} (S${results[a].tvSeasonNumber}:E${results[a].tvSeasonEpisodeNumber})`)
+                    console.log(`${brand} id: ${results[a].id}    ${results[a].seriesName}:${results[a].title} (S${results[a].tvSeasonNumber}:E${results[a].tvSeasonEpisodeNumber})`)
                 }
 
 
@@ -39,7 +98,12 @@ exports={
 
 
 
-console.log(exports.hellofile())
+for(let i=0;i<settings._brands.length;i++){
+
+    console.log(exports.hellofile(settings._brands[i]));
+}
+
+*/
 
 /*
 
