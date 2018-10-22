@@ -6,14 +6,12 @@
   "scripts": {
     "build": "npm run build_babel; npm run build_webpack;",
     "build_webpack": "webpack --config webpack.config.js;",
-    "build_babel": "babel ./src -d ./build",
-    "test": "jest"
+    "build_babel": "babel ./src/app.js -d ./build",
+    "test": "jest --watchAll"
   },
   "author": "",
   "license": "ISC",
-  "jest": {
-    "testRegex": "tests/"
-  },
+
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.1.2",
