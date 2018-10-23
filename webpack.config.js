@@ -8,7 +8,7 @@ var cachebuster = Math.round(new Date().getTime() / 1000);
 console.log('cachebuster:'+cachebuster)
 module.exports = {
     mode: 'none',
-    entry: {    'app':['./build/app.js']
+    entry: {    'main':['./build/main.js']
     },
     output:{
         path:__dirname,

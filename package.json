@@ -6,12 +6,13 @@
   "scripts": {
     "build": "npm run build_babel; npm run build_webpack;",
     "build_webpack": "webpack --config webpack.config.js;",
-    "build_babel": "babel ./src/app.js -d ./build",
-    "test": "jest --watchAll"
+    "build_babel": "babel ./src/main.js -d ./build && babel ./src/app.js -d ./build",
+    "test": "jest --watchAll",
+    "view": "http-server $PWD -p 8081",
+    "dev":"live-server --port=8081"
   },
   "author": "",
   "license": "ISC",
-
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.1.2",
@@ -30,6 +31,7 @@
     "jest": "^23.6.0",
     "js.cookie": "0.0.4",
     "mocha": "^5.2.0",
+    "node-fetch": "^2.2.0",
     "node-sass": "^4.7.2",
     "oboe": "^2.1.4",
     "sass-loader": "^6.0.6",
