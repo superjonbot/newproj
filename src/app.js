@@ -16,7 +16,6 @@ module.exports = {
     },
 
     hello:()=>{return 'hello'},
-
     feedURI:(brand)=>{return eval('`'+module.exports.defaults._feedURL+'`')},
 
     getResults : async function (brand) {
@@ -35,3 +34,5 @@ module.exports = {
     }
 
 };
+
+

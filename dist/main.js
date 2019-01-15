@@ -101,7 +101,7 @@ module.exports = __webpack_require__(1);
 var app = __webpack_require__(2);
 
 app.getResults('aetv').then(function (entries) {
-  console.log(entries.length);
+  console.log('done:' + entries.length);
 });
 
 /***/ }),

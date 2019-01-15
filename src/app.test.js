@@ -1,4 +1,4 @@
-const app = require('../src/app')
+const app = require('./app')
 
 // CHECK FOR TRUTHY & FALSY VALUES *
 // toBeNull matches only null
@@ -11,12 +11,12 @@ test('001 exports.hello', () => {
   expect(app.hello()).toBe('hello')
 })
 
-test('001 exports.feedURI', () => {
-    expect(app.feedURI('aetv')).toBe('https://feeds.video.aetnd.com/api/aetv/videos?filter%5BvideoType%5D=Episode&filter%5BisBehindWall%5D=false&perpage=500')
-})
-
-test('get results has at least a hundred entries', () => {
-    expect.assertions(1);
-return app.getResults('aetv').then(data => expect(data.length).toBeGreaterThan(100));
-});
-
+// test('001 exports.feedURI', () => {
+//     expect(app.feedURI('aetv')).toBe('https://feeds.video.aetnd.com/api/aetv/videos?filter%5BvideoType%5D=Episode&filter%5BisBehindWall%5D=false&perpage=500')
+// })
+//
+// test('get results has at least a hundred entries', () => {
+//     expect.assertions(1);
+// return app.getResults('aetv').then(data => expect(data.length).toBeGreaterThan(100));
+// });
+//
