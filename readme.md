@@ -1,4 +1,4 @@
-cd sandbox
+cd ./
 
 run tests:  npm run build
 run as node script:  node src/main.js
